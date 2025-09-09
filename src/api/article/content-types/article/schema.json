@@ -59,6 +59,15 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "articles"
+    },
+    "industries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::industry.industry",
+      "mappedBy": "articles"
+    },
+    "featured": {
+      "type": "boolean"
     }
   }
 }
