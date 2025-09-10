@@ -425,7 +425,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
+        maxLength: 180;
       }>;
     featured: Schema.Attribute.Boolean;
     industries: Schema.Attribute.Relation<
