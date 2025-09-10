@@ -11,14 +11,14 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "name": {
+      "type": "string"
+    },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "inversedBy": "tags"
-    },
-    "name": {
-      "type": "string"
+      "mappedBy": "tags"
     }
   }
 }
