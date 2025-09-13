@@ -7,7 +7,7 @@
     "displayName": "Tag"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -19,6 +19,9 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "tags"
+    },
+    "description": {
+      "type": "string"
     }
   }
 }
