@@ -19,9 +19,6 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "tags"
-    },
-    "description": {
-      "type": "string"
     }
   }
 }
