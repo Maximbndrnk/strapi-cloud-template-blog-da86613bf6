@@ -29,8 +29,7 @@
       "required": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos"
+        "files"
       ]
     },
     "author": {
@@ -74,6 +73,12 @@
     },
     "metaDescription": {
       "type": "string"
+    },
+    "topics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
+      "mappedBy": "articles"
     }
   }
 }
