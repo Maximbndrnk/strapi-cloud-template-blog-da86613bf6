@@ -7,9 +7,88 @@
 module.exports = {
   getArticleCards: async (ctx, next) => {
     try {
-      // Спочатку спробуємо без фільтрів для діагностики
+      // Отримуємо query параметри для фільтрації
+      const { 
+        category, 
+        author, 
+        tags, 
+        topics,
+        industries,
+        featured, 
+        published, 
+        sort = 'createdAt:desc', 
+        limit = 10,
+        start = 0 
+      } = ctx.query;
+
+      // Будуємо фільтри динамічно
+      const filters = {};
+
+      // Фільтр по категорії
+      if (category) {
+        filters.category = {
+          slug: category
+        };
+      }
+
+      // Фільтр по автору
+      if (author) {
+        filters.author = {
+          id: author
+        };
+      }
+
+      // Фільтр по тегах
+      if (tags) {
+        const tagIds = Array.isArray(tags) ? tags : tags.split(',');
+        filters.tags = {
+          id: {
+            $in: tagIds
+          }
+        };
+      }
+
+      // Фільтр по топіках
+      if (topics) {
+        const topicIds = Array.isArray(topics) ? topics : topics.split(',');
+        filters.topics = {
+          id: {
+            $in: topicIds
+          }
+        };
+      }
+
+      // Фільтр по індустріях
+      if (industries) {
+        const industryIds = Array.isArray(industries) ? industries : industries.split(',');
+        filters.industries = {
+          id: {
+            $in: industryIds
+          }
+        };
+      }
+
+      // Фільтр по featured
+      if (featured !== undefined) {
+        filters.featured = featured === 'true';
+      }
+
+      // Фільтр по published
+      if (published === 'true') {
+        filters.publishedAt = {
+          $notNull: true
+        };
+      }
+
+      // Парсимо sort параметр
+      const sortArray = sort.split(':');
+      const sortField = sortArray[0];
+      const sortOrder = sortArray[1] || 'desc';
+      const sortObj = { [sortField]: sortOrder };
+
+      // Використовуємо Strapi Document Service API для отримання даних
       const articles = await strapi.documents('api::article.article').findMany({
-        fields: ['id', 'title', 'description', 'slug', 'featured', 'createdAt'],
+        fields: ['id', 'title', 'description', 'slug', 'featured', 'createdAt', 'publishedAt'],
         populate: {
           cover: {
             fields: ['url', 'name', 'alternativeText'],
@@ -28,16 +107,17 @@ module.exports = {
           tags: {
             fields: ['id', 'name'],
           },
+          topics: {
+            fields: ['id', 'name'],
+          },
+          industries: {
+            fields: ['id', 'name'],
+          },
         },
-        // Фільтри для отримання статей для карток
-        filters: {
-          // Прибираємо фільтр по publishedAt, оскільки статті можуть бути не опубліковані
-          // publishedAt: {
-          //     $notNull: true,
-          // },
-        },
-        sort: { publishedAt: 'desc' }, // Сортування по даті
-        limit: 10, // Обмеження кількості
+        filters,
+        sort: sortObj,
+        limit: parseInt(limit),
+        offset: parseInt(start),
       });
 
       // Форматуємо дані відповідно до вимог
@@ -70,10 +150,31 @@ module.exports = {
           id: tag.id,
           name: tag.name,
         })) : [],
+        topics: article.topics ? article.topics.map(topic => ({
+          id: topic.id,
+          name: topic.name,
+        })) : [],
+        industries: article.industries ? article.industries.map(industry => ({
+          id: industry.id,
+          name: industry.name,
+        })) : [],
       }));
+
+      // Отримуємо загальну кількість для пагінації
+      const totalCount = await strapi.documents('api::article.article').count({
+        filters,
+      });
 
       ctx.body = {
         data: formattedArticles,
+        meta: {
+          pagination: {
+            page: Math.floor(parseInt(start) / parseInt(limit)) + 1,
+            pageSize: parseInt(limit),
+            pageCount: Math.ceil(totalCount / parseInt(limit)),
+            total: totalCount,
+          },
+        },
       };
     } catch (err) {
       ctx.body = {
