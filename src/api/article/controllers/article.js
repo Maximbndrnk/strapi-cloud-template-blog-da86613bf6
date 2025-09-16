@@ -29,6 +29,7 @@ module.exports = createCoreController('api::article.article', ({ strapi }) => ({
 
     return entity;
   },
+    // hello
 
   // Перевизначаємо метод findOne для додавання populate автора з аватаром
   async findOne(ctx) {
