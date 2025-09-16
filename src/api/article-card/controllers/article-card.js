@@ -29,11 +29,16 @@ module.exports = {
             fields: ['id', 'name'],
           },
         },
-        filters: {
-          publishedAt: {
-            $notNull: true, // Тільки опубліковані статті
+          filters: {
+              publishedAt: {
+                  $notNull: true,
+              },
+              featured: {
+                  $eq: false, // Тільки non-featured статті
+              },
           },
-        },
+          sort: { publishedAt: 'desc' }, // Сортування по даті
+          limit: 10, // Обмеження кількості
       });
 
       // Форматуємо дані відповідно до вимог
