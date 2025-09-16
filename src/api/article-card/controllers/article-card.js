@@ -7,7 +7,7 @@
 module.exports = {
   getArticleCards: async (ctx, next) => {
     try {
-      // Використовуємо Strapi Document Service API для отримання даних
+      // Спочатку спробуємо без фільтрів для діагностики
       const articles = await strapi.documents('api::article.article').findMany({
         fields: ['id', 'title', 'description', 'slug', 'featured', 'publishedAt'],
         populate: {
@@ -29,16 +29,15 @@ module.exports = {
             fields: ['id', 'name'],
           },
         },
-          filters: {
-              publishedAt: {
-                  $notNull: true,
-              },
-              featured: {
-                  $eq: false, // Тільки non-featured статті
-              },
-          },
-          sort: { publishedAt: 'desc' }, // Сортування по даті
-          limit: 10, // Обмеження кількості
+        // Фільтри для отримання статей для карток
+        filters: {
+          // Прибираємо фільтр по publishedAt, оскільки статті можуть бути не опубліковані
+          // publishedAt: {
+          //     $notNull: true,
+          // },
+        },
+        sort: { publishedAt: 'desc' }, // Сортування по даті
+        limit: 10, // Обмеження кількості
       });
 
       // Форматуємо дані відповідно до вимог
