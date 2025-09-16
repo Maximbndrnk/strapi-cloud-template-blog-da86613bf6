@@ -9,7 +9,7 @@ module.exports = {
     try {
       // Спочатку спробуємо без фільтрів для діагностики
       const articles = await strapi.documents('api::article.article').findMany({
-        fields: ['id', 'title', 'description', 'slug', 'featured', 'publishedAt'],
+        fields: ['id', 'title', 'description', 'slug', 'featured', 'createdAt'],
         populate: {
           cover: {
             fields: ['url', 'name', 'alternativeText'],
