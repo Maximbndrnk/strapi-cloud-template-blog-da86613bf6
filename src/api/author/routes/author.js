@@ -1,9 +1,19 @@
 'use strict';
 
-/**
- * author router.
- */
-
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::author.author');
+module.exports = createCoreRouter('api::author.author', {
+    config: {
+        routes: [
+            {
+                method: 'GET',
+                path: '/authors/short',
+                handler: 'author.findShort',
+                config: {
+                    policies: [],
+                    middlewares: [],
+                },
+            },
+        ],
+    },
+});
