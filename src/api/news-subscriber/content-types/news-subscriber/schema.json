@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_subscribers",
+  "info": {
+    "singularName": "news-subscriber",
+    "pluralName": "news-subscribers",
+    "displayName": "NewsSubscriber"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "default": "User"
+    }
+  }
+}
