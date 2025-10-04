@@ -64,7 +64,8 @@
       "mappedBy": "articles"
     },
     "featured": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "seoTitle": {
       "type": "string"

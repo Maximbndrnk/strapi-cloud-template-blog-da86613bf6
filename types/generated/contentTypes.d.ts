@@ -396,7 +396,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 180;
       }>;
-    featured: Schema.Attribute.Boolean;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     industries: Schema.Attribute.Relation<
       'manyToMany',
       'api::industry.industry'
