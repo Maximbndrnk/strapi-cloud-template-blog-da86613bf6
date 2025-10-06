@@ -9,6 +9,11 @@
   "attributes": {
     "body": {
       "type": "richtext"
+    },
+    "header": {
+      "type": "string",
+      "default": "Simple nav header",
+      "required": true
     }
   }
 }

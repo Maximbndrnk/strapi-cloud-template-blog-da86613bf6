@@ -397,10 +397,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         maxLength: 180;
       }>;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    industries: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::industry.industry'
-    >;
+    industry: Schema.Attribute.Relation<'manyToOne', 'api::industry.industry'>;
+    isTitleArticle: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -410,10 +409,10 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     metaDescription: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seoTitle: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'title'>;
-    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    tag: Schema.Attribute.Relation<'manyToOne', 'api::tag.tag'>;
     title: Schema.Attribute.String;
-    topics: Schema.Attribute.Relation<'manyToMany', 'api::topic.topic'>;
+    topic: Schema.Attribute.Relation<'manyToOne', 'api::topic.topic'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -527,7 +526,7 @@ export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -586,7 +585,7 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -612,7 +611,7 @@ export interface ApiTopicTopic extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -12,16 +12,32 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.quote",
+        "shared.rich-text"
+      ]
+    },
     "title": {
       "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isTitleArticle": {
+      "type": "boolean",
+      "default": false
     },
     "description": {
       "type": "text",
       "maxLength": 180
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
     },
     "cover": {
       "type": "media",
@@ -44,28 +60,17 @@
       "target": "api::category.category",
       "inversedBy": "articles"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "shared.quote",
-        "shared.rich-text"
-      ]
-    },
-    "industries": {
+    "industry": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::industry.industry",
-      "mappedBy": "articles"
+      "inversedBy": "articles"
     },
-    "tags": {
+    "tag": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::tag.tag",
-      "mappedBy": "articles"
-    },
-    "featured": {
-      "type": "boolean",
-      "default": false
+      "inversedBy": "articles"
     },
     "seoTitle": {
       "type": "string"
@@ -73,11 +78,11 @@
     "metaDescription": {
       "type": "string"
     },
-    "topics": {
+    "topic": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::topic.topic",
-      "mappedBy": "articles"
+      "inversedBy": "articles"
     }
   }
 }

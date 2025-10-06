@@ -16,9 +16,9 @@
     },
     "articles": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::article.article",
-      "inversedBy": "industries"
+      "mappedBy": "industry"
     }
   }
 }
