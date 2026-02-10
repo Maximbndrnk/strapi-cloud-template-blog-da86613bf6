@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_requests",
+  "info": {
+    "singularName": "project-request",
+    "pluralName": "project-requests",
+    "displayName": "Project Request",
+    "description": "Submissions from the Get in touch / Request a quote form"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "company": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "type": {
+      "type": "string"
+    },
+    "page": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "user_country": {
+      "type": "string"
+    },
+    "user_ip": {
+      "type": "string"
+    }
+  }
+}
