@@ -9,6 +9,7 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
+    "build:start": "npm run build && npm run start",
     "strapi": "strapi"
   },
   "dependencies": {
