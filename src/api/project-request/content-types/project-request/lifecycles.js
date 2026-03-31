@@ -1,7 +1,5 @@
 'use strict';
 
-//SG.1xjtc_lKRUG92kPKMJ0eTQ.8VpDJYqS
-// 8VZKJdDN4grviMIroURT0TY_w1CjgZIbab8
 const NOTIFICATION_EMAIL = 'maksym.bondarenko@tallium.com';
 
 module.exports = {
@@ -10,7 +8,7 @@ module.exports = {
 
     try {
       await strapi.plugin('email').service('email').send({
-        to: NOTIFICATION_EMAIL,
+        to: NOTIFICATION_EMAIL, // TODO: change to the actual email
         replyTo: result.email,
         subject: 'New project request submitted',
         text: `A new project request has been submitted.
