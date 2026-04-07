@@ -9,7 +9,7 @@ module.exports = {
     try {
       await strapi.plugin('email').service('email').send({
         to: NOTIFICATION_EMAIL, // TODO: change to the actual email
-        replyTo: result.email,
+        replyTo: NOTIFICATION_EMAIL,
         subject: 'New project request submitted',
         text: `A new project request has been submitted.
 
