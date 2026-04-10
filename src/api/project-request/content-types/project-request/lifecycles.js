@@ -1,6 +1,6 @@
 'use strict';
 
-const NOTIFICATION_EMAIL = 'maksym.bondarenko@tallium.com';
+const NOTIFICATION_EMAIL = 'maksym.bondarenko@tallium.com, info@tallium.com';
 
 module.exports = {
   async afterCreate(event) {
