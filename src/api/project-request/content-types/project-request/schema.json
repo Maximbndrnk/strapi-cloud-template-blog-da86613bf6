@@ -58,6 +58,18 @@
     },
     "user_ip": {
       "type": "string"
+    },
+    "budget": {
+      "type": "string"
+    },
+    "timeline": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "string"
+    },
+    "sourcesOtherDescription": {
+      "type": "string"
     }
   }
 }
