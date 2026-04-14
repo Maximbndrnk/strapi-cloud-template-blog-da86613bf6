@@ -6,7 +6,9 @@ module.exports = {
       method: 'PUT',
       path: '/project-requests/:id/stepper-data',
       handler: 'project-request.updateStepperData',
-      config: {}
+      config: {
+        auth: false
+      }
     }
   ]
 };
