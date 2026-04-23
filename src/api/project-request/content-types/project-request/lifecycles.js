@@ -2,7 +2,7 @@
 
 const NOTIFICATION_EMAIL = 'maksym.bondarenko@tallium.com, info@tallium.com';
 const EMAIL_DELAY_MS = 2 * 60 * 1000;
-const COMPANY_LOGO_URL = '/uploads/Logo.svg';
+const COMPANY_LOGO_URL = 'https://essential-festival-ec0ced78b0.media.strapiapp.com/Logo_ca9d96a651.svg';
 
 const withFallback = (value) => value || 'N/A';
 
