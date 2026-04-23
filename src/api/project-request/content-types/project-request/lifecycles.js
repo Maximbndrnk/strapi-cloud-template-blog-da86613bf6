@@ -2,6 +2,7 @@
 
 const NOTIFICATION_EMAIL = 'maksym.bondarenko@tallium.com, info@tallium.com';
 const EMAIL_DELAY_MS = 2 * 60 * 1000;
+const COMPANY_LOGO_URL = '/uploads/Logo.svg';
 
 const withFallback = (value) => value || 'N/A';
 
@@ -27,6 +28,9 @@ Sources (Other): ${withFallback(projectRequest.sourcesOtherDescription)}`,
     <div style="margin:0;padding:24px;background:#f4f6fb;font-family:Arial,sans-serif;color:#1f2937;">
       <div style="max-width:720px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
         <div style="padding:20px 24px;background:#111827;color:#ffffff;">
+          <div style="text-align:center;margin-bottom:12px;">
+            <img src="${COMPANY_LOGO_URL}" alt="Company logo" style="display:inline-block;max-height:48px;max-width:220px;height:auto;width:auto;" />
+          </div>
           <h2 style="margin:0;font-size:20px;line-height:1.3;">New project request submitted</h2>
         </div>
 
