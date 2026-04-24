@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidate_applications",
+  "info": {
+    "singularName": "candidate-application",
+    "pluralName": "candidate-applications",
+    "displayName": "Candidate Application",
+    "description": "Submissions from Send your CV form"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "position": {
+      "type": "string"
+    },
+    "about": {
+      "type": "text"
+    },
+    "vacancyId": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "submittedAt": {
+      "type": "datetime"
+    },
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}
